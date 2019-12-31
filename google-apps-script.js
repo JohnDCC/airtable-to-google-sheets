@@ -1,12 +1,12 @@
-var api_key = "keyXXXXXXXXXXXX"; //ADD YOUR API KEY FROM AIRTABLE HERE
-var baseID = "appXXXXXXXXXXXX"; //ADD YOUR BASE ID HERE
-var tablesToSync_fromSheetRange = "A14:B16"; //UPDATE CELL RANGE HERE (for tables that you want to sync)
+var api_key = "keykWEacEazl1rbeJ"; //ADD YOUR API KEY FROM AIRTABLE HERE
+var baseID = "appqU3xpMsunLHmFo"; //ADD YOUR BASE ID HERE
+var tablesToSync_fromSheetRange = "A14:C15"; //UPDATE CELL RANGE HERE (for tables that you want to sync)
 
 ////////// add items to UI menu ///////////
 function onOpen(e) {
    SpreadsheetApp.getUi()
-       .createMenu('Airtable to google sheets sync')
-       .addItem('Manually sync all data', 'syncData')
+       .createMenu('SHAMUS')
+       .addItem('ALL DATA', 'syncData')
        .addToUi();
  }
 
@@ -20,9 +20,10 @@ function syncData(){
   //sync each table
   for (var i = 0; i<tablesToSync.length; i++){
     var tableName = tablesToSync[i][0];
+    var pasteName = tablesToSync[i][2];
     var viewID = tablesToSync[i][1];
     var airtableData = fetchDataFromAirtable(tableName, viewID);
-    pasteDataToSheet(tableName, airtableData);
+    pasteDataToSheet(pasteName, airtableData);
     
     //wait for a bit so we don't get rate limited by Airtable
     Utilities.sleep(201);
